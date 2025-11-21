@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="style.css">
 <style>
 </style>
-<script src=""></script>
 <body>
 
 <center>
@@ -16,7 +15,7 @@
 <p>Current Electrons matches the Atom: hydrogen</p>
 
 <!-- Image of relevant bohr model-->
-<img src="Bohr Models/1st/bohr model hydrogen.png" alt="" width="200px">
+<img src="Bohr Models/1st/bohr model hydrogen.png" alt="" width="200px" id="image">
 
 <!-- allows you to add or take away electrons-->
 <h3>Change # of electrons</h3>
@@ -30,9 +29,22 @@
 
 <!-- javascript portion of code -->
 <script>
-var electrons = $.getJSON("Memory.json");
-console.log(electrons)
-// document.getElementById("button2").onclick = 
+electrons = 0;
+document.getElementById("button2").onclick = function addelectrons(){
+    electrons = electons + 1
+    // I am sorry to all programmers but an array that is manually coded is the way to go here instead of a proper setup
+    var models = ["bohr model hydrogen","bohr model helium","bohr model lithium","bohr model beryllium","bohr model boron",
+    "bohr model carbon","bohr model nitrogen","bohr model oxygen","bohr model fluorine","bohr model neon","bohr model sodium",
+    "bohr model magnesium","bohr model aluminium","bohr model silicon","bohr model phosphorous","bohr model sulfur",
+    "bohr model chlorine","bohr model argon","bohr model potassium","bohr model calcium","bohr model scandium","bohr model Titanium",
+    "bohr model vanadium","bohr model chromium","bohr model manganese","bohr model iron","bohr model copper","bohr model nickel",
+    "bohr model zinc","bohr model gallium","bohr model germanium","bohr model arsenic","bohr model selenium","bohr model bromine",
+    "bohr model krypton"
+    ]
+    document.getElementById("image").src = models[electrons];
+
+ };
+
 
 
 
