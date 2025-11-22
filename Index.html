@@ -12,7 +12,7 @@
 <h1>Bohr Model Simulation</h1>
 
 <!-- identifies the current atom based on electron configuration -->
-<p>Current Electrons matches the Atom: hydrogen</p>
+<p id="tag">Current Electron Configuration matches the Atom: hydrogen</p>
 
 <!-- Image of relevant bohr model-->
 <img src="Bohr Models/bohr model hydrogen.png" alt="" width="200px" id="image">
@@ -20,33 +20,70 @@
 <!-- allows you to add or take away electrons-->
 <h3>Change # of electrons</h3>
 <h3 id="electronamount">Currently there are 1 electrons</h3>
-<div class="button2" id="addelectron">Add electron</div>
-<div class="button1" id="removeelectron">Remove electron</div>
+<div onclick="changeimage()" class="button2" id="addelectron">Add electron</div>
+<div onclick="reduceimage()"" class="button1" id="removeelectron">Remove electron</div>
 
 </center>
 
 
 <!-- javascript portion of code -->
 <script>
-electrons = 0;
+if (Number(localStorage.getItem("electron")) != 0){  
+    console.log("this has been loaded previously");
+}else{
+    localStorage.setItem("electron", "0");
+}
 
-// I am sorry to all programmers but an array that is manually coded is the way to go here instead of a proper setup
-var models = ["Bohr Models/bohr model hydrogen","Bohr Models/bohr model helium","Bohr Models/bohr model lithium","Bohr Models/bohr model beryllium","Bohr Models/bohr model boron",
-"Bohr Models/bohr model carbon","Bohr Models/bohr model nitrogen","Bohr Models/bohr model oxygen","Bohr Models/bohr model fluorine","Bohr Models/bohr model neon","Bohr Models/bohr model sodium",
-"Bohr Models/bohr model magnesium","Bohr Models/bohr model aluminium","Bohr Models/bohr model silicon","Bohr Models/bohr model phosphorous","Bohr Models/bohr model sulfur",
-"Bohr Models/bohr model chlorine","Bohr Models/bohr model argon","Bohr Models/bohr model potassium","Bohr Models/bohr model calcium","Bohr Models/bohr model scandium","Bohr Models/bohr model Titanium",
-"Bohr Models/bohr model vanadium","Bohr Models/bohr model chromium","Bohr Models/bohr model manganese","Bohr Models/bohr model iron","Bohr Models/bohr model copper","Bohr Models/bohr model nickel",
-"Bohr Models/bohr model zinc","Bohr Models/bohr model gallium","Bohr Models/bohr model germanium","Bohr Models/bohr model arsenic","Bohr Models/bohr model selenium","Bohr Models/bohr model bromine",
-"Bohr Models/bohr model krypton"
-]
+refresh();
 
-document.getElementById("button2").addEventListener("click", electronAddition) 
-function electronAddition(){
-    electrons = electons + 1
-    document.getElementById("electronamount")
-    document.getElementById("image").src = models[electrons];
- };
+function refresh(){
+    // electrons!!!
+    electrons = Number(localStorage.getItem("electron"));
+    newValue = electrons;
 
+    names = ["hydrogen","helium","lithium","beryllium","boron","carbon","nitrogen","oxygen","fluorine","neon","sodium","magnesium",
+    "aluminum","silicon","phosphorous","sulfur","chlorine","argon","potassium","calcium","scandium","titanium","vanadium",
+    "chromium","manganese","iron","cobalt","nickel","copper","zinc","gallium","germanium","arsenic","selenium","bromine","krypton"
+    ]
+
+    document.getElementById("image").src = "Bohr Models/bohr model " + names[newValue] + ".png";
+    localStorage.setItem("electron", String(newValue));
+    document.getElementById("tag").textContent = "Current Electron Configuration matches the Atom: " + names[newValue]
+}
+
+function changeimage(){
+    // electrons!!!
+    electrons = Number(localStorage.getItem("electron"));
+    if (electrons < 35){
+        newValue = electrons + 1;
+    }
+
+    names = ["hydrogen","helium","lithium","beryllium","boron","carbon","nitrogen","oxygen","fluorine","neon","sodium","magnesium",
+    "aluminum","silicon","phosphorous","sulfur","chlorine","argon","potassium","calcium","scandium","titanium","vanadium",
+    "chromium","manganese","iron","cobalt","nickel","copper","zinc","gallium","germanium","arsenic","selenium","bromine","krypton"
+    ]
+
+    document.getElementById("image").src = "Bohr Models/bohr model " + names[newValue] + ".png";
+    localStorage.setItem("electron", String(newValue));
+    document.getElementById("tag").textContent = "Current Electron Configuration matches the Atom: " + names[newValue]
+}
+
+function reduceimage(){
+    // electrons!!!
+    electrons = Number(localStorage.getItem("electron"));
+    if (electrons > 0){
+        newValue = electrons - 1;
+    }
+
+    names = ["hydrogen","helium","lithium","beryllium","boron","carbon","nitrogen","oxygen","fluorine","neon","sodium","magnesium",
+    "aluminum","silicon","phosphorous","sulfur","chlorine","argon","potassium","calcium","scandium","titanium","vanadium",
+    "chromium","manganese","iron","cobalt","nickel","copper","zinc","gallium","germanium","arsenic","selenium","bromine","krypton"
+    ]
+
+    document.getElementById("image").src = "Bohr Models/bohr model " + names[newValue] + ".png";
+    localStorage.setItem("electron", String(newValue));
+    document.getElementById("tag").textContent = "Current Electron Configuration matches the Atom: " + names[newValue]
+}
 </script>
 </body>
 </html>
